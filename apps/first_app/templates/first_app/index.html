@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Course Catelog</title>
+  </head>
+  <body>
+    <table style="border:solid 1px black">
+      <thead>
+          <tr>
+
+              <th>Course Name</th>
+              <th>Description</th>
+              <th>Date Added</th>
+              <th>Action</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for course in data %}
+          <tr>
+            <td>{{ course.name}}</td>
+            <td>{{ course.description.description}}</td>
+            <td>{{ course.created_at}}</td>
+            <td><a href="delete/{{course.id}}">remove</a></td>
+
+          </tr>
+          {% endfor %}
+
+      </tbody>
+  </table>
+    <h2>Add A New  Course</h2>
+
+    <form action="/create" method="post">
+      {% csrf_token %}
+      Name:<input type="text" name="name" ><br>
+      Description:<textarea name="description" rows="8" cols="80"></textarea>
+      <input type="submit" name="" value="Add">
+
+    </form>
+
+  </body>
+</html>
